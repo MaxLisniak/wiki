@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+{{ block.super }}search: {{ q }}
+{% endblock %}
+
+{% block body %}
+    <!-- <h1>{{ caption }}</h1> -->
+    <ul>
+        {% for piece in search_res %}
+        <li><a href="{% url 'entry' caption=piece %}">{{ piece }}</a></li>
+        {% empty %}
+        Nothing found
+        {% endfor %}
+    </ul>
+    
+
+{% endblock %}
