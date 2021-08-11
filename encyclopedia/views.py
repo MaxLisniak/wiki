@@ -1,4 +1,6 @@
-from re import S
+from re import L, S
+# from typing_extensions import Required
+from django.http import request
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
@@ -21,7 +23,7 @@ def index(request):
     })
 
 def entry(request, caption):
-    caption = caption.upper()
+    caption = caption
     entry_body = util.get_entry(caption)
     if entry_body:
         return render(request, "encyclopedia/entry.html", {
@@ -61,9 +63,14 @@ def to_h1(caption):
     return f"# {caption}\n\n"
  
 class NewPageForm(forms.Form):
-    caption = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Caption'}),
-    validators=[validate_caption])
-    body = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Body'}))
+    caption = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Caption',
+        'required': True}),
+        validators=[validate_caption])
+    body = forms.CharField(widget=forms.Textarea(attrs={
+        'placeholder': 'Body',
+        'required': True}))
+
 def new_page(request):
     if request.method == "POST":
         form = NewPageForm(request.POST)
@@ -77,4 +84,32 @@ def new_page(request):
         })
     return render(request, "encyclopedia/new_page.html",{
         "form": NewPageForm(),
+    })
+
+class EditPageForm(forms.Form):
+    body = forms.CharField(widget=forms.Textarea(attrs={
+        'placeholder': 'Body',
+        'required': True}))
+
+def edit_page(request, caption):
+    if request.method == "POST":
+        form = EditPageForm(request.POST)
+        if form.is_valid():
+            body = to_h1(caption) + form.cleaned_data["body"]
+            util.save_entry(caption, body)
+            return HttpResponseRedirect(reverse('entry', kwargs={"caption": caption}))
+        return render(request, "encyclopedia/edit_page.html", {
+            "form": form,
+        })
+    entry = util.get_entry(caption)
+    if not entry:
+        return render(request, "encyclopedia/not_found.html")
+    entry = entry.split("\n\n",1)[1]
+    data = {
+        "body": entry,
+    }
+    form = EditPageForm(data)
+    return render(request, "encyclopedia/edit_page.html", {
+        "form": form,
+        "caption": caption,
     })

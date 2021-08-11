@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    <a href="{% url 'edit_page' caption=caption %}">Edit page</a>
     <p>{{ entry_body }}</p>
 
 {% endblock %}
