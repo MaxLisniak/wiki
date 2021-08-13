@@ -10,6 +10,10 @@ from django.utils.translation import gettext_lazy as _
 from . import util
 from django import forms
 
+import random as rand
+from markdown2 import Markdown
+
+
 # class SearchForm(forms.Form):
 #     query = forms.CharField(
 #         widget=forms.TextInput(attrs={'placeholder': 'Search'})
@@ -23,12 +27,14 @@ def index(request):
     })
 
 def entry(request, caption):
+    markdowner = Markdown()
     caption = caption
     entry_body = util.get_entry(caption)
     if entry_body:
+        html = markdowner.convert(entry_body)
         return render(request, "encyclopedia/entry.html", {
             "caption": caption,
-            "entry_body": entry_body,
+            "entry_body": html,
         })
     else:
         return render(request, "encyclopedia/not_found.html")
@@ -113,3 +119,8 @@ def edit_page(request, caption):
         "form": form,
         "caption": caption,
     })
+
+def random(request):
+    entries = util.list_entries()
+    caption = rand.choice(entries)
+    return HttpResponseRedirect(reverse("entry", kwargs={"caption": caption}))
