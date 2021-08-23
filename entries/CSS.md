@@ -1,8 +1,8 @@
-CSS is a language that can be used to add style to an [HTML](/wiki/HTML) page.
+CSS is a language that can be used to add style to an [it](information technology) page.
 
 Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language such as *HTML*. CSS is a cornerstone technology of the World Wide Web, alongside *HTML* and *JavaScript*.
 
-The CSS specifications are maintained by the World Wide Web Consortium (W3C). Internet media type (MIME type) `text/css` is registered for use with CSS by **RFC 2318** (March 1998). The W3C operates a free CSS validation service for CSS documents.
+The CSS specifications are maintained by the World Wide Web Consortium (W3C). Internet media type (MIME type) `text/css` is registered for use with CSS by *RFC 2318* (March 1998). The W3C operates a free CSS validation service for CSS documents.
 
 # Syntax
 CSS has a simple syntax and uses a number of English keywords to specify the names of various style properties.
@@ -20,24 +20,29 @@ Selectors may apply to the following:
    - class: an identifier that can annotate multiple elements in a document, identified with a period prefix e.g. .classname
 - elements depending on how they are placed relative to others in the document tree.
 
-For example, under pre-CSS HTML, a heading element defined with red text would be written as:
-
-```
-<style>
-    h1 {
-        color: red;
-    }
-</style>
-```
+1. list *item*
+2. list **item**
+3. list `item`
 
 ### Example
 Given the following style sheet:
 
-```
-h1 {
-   color: pink;
-}
-```
-
 Suppose there is an h1 element with an emphasizing element (em) inside.
 If no color is assigned to the em element, the emphasized word "illustrate" inherits the color of the parent element, h1. The style sheet h1 has the color pink, hence, the em element is likewise pink.
+
+#### Header
+
+text
+
+##### Header
+
+text
+
+###### Header
+
+text
+
+text
+
+he said:
+> some text

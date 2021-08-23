@@ -1,5 +1,4 @@
 from re import L, S
-# from typing_extensions import Required
 from django.http import request
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
@@ -13,11 +12,6 @@ from django import forms
 import random as rand
 from markdown2 import Markdown
 
-
-# class SearchForm(forms.Form):
-#     query = forms.CharField(
-#         widget=forms.TextInput(attrs={'placeholder': 'Search'})
-    # )
 
 def index(request):
     # form = SearchForm()
@@ -65,8 +59,6 @@ def validate_caption(value):
             params={'value': value},
         )
 
-# def to_h1(caption):
-#     return f"# {caption}\n\n"
  
 class NewPageForm(forms.Form):
     caption = forms.CharField(widget=forms.TextInput(attrs={

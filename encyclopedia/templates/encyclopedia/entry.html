@@ -6,7 +6,7 @@
 
 {% block body %}
     <a href="{% url 'edit_page' caption=caption %}">Edit page</a>
-    <h1 class="caption">{{ caption }}</h1>
+    <h1 class="caption">{{ caption|upper }}</h1>
     <p>{{ entry_body|safe }}</p>
 
 {% endblock %}
