@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Edit - {{ caption }}</h1>
-    <form action="{% url 'edit_page' caption=caption %}" method="POST">
+    <a href="{% url 'entry' caption=caption %}">Back</a>
+    <h1 class="caption">Edit - {{ caption }}</h1>
+    <form action="{% url 'edit_page' caption=caption %}" method="POST" id="edit_page">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" name="save" value="Save">
+        <input type="submit" name="save" value="Save" class="save">
     </form>
 
 {% endblock %}

@@ -1,0 +1,73 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+{{ block.super }}Formatting tips
+{% endblock %}
+
+{% block body %}
+    <h1>Formatting tips</h1>
+    <p>To create a heading, add one to six # symbols before your heading text. The number of # you use will determine the size of the heading.</p>
+    <div class="example"># The largest heading
+## The second largest heading
+###### The smallest heading</div>
+    <h1>The largest heading</h1>
+    <h2>The second largest heading</h2>
+    <h6>The smallest heading</h6>
+    <p>Use **text** or __text__ for <strong>bold</strong></p>
+    <p>Use *text* or _text_ for <em>italic</em></p>
+    <p>Use ***text*** or ___text___ for all <strong><em>bold and italic</em></strong></p>
+    <p>Here's how to create a quote:</p>
+    <div class="example">In the words of Abraham Lincoln:
+        > Pardon my French</div>
+    <p>In the words of Abraham Lincoln:</p>
+    <blockquote>Pardon my French</blockquote>
+    <p>Here's how to create lists:</p>
+    <p>Unordered list:</p>
+    <div class="example">- George Washington
+        - John Adams
+        - Thomas Jefferson
+    </div>
+    <ul>
+        <li>George Washington</li>
+        <li>John Adams</li>
+        <li>Thomas Jefferson</li>
+    </ul>
+    <p>Ordered list:</p>
+    <div class="example">1. James Madison
+        2. James Monroe
+        3. John Quincy Adams
+    </div>
+    <ol>
+        <li>James Madison</li>
+        <li>James Monroe</li>
+        <li>John Quincy Adams</li>
+    </ol>
+    <p>Nested list:</p>
+    <div class="example">1. First list item
+        - First nested list item
+        - Second nested list item
+    </div>
+    <ol>
+        <li>First list item
+        <ul>
+        <li>First nested list item</li>
+        <li>Second nested list item</li>
+        </ul></li>
+    </ol>   
+    <p>Here's how to create a link:</p>
+    <div class="example">CSS is a language that can be used to add style to an [HTML](/wiki/HTML) page.</div>
+    <p>CSS is a language that can be used to add style to an <a href="/wiki/HTML">HTML</a> page.</p>
+    <p>Use `command` for a command:</p>
+    <div class="example">A basic git command ```git status```.</div>
+    <p>A basic git command <code>git status</code>.</p>
+    <p>Here's how to create a block of code:</p>
+    <div class="example">```
+    git status
+    git add
+    git commit
+        ```</div>
+    <code>
+git status
+git add
+git commit</code>
+    {% endblock %}

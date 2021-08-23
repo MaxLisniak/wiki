@@ -1,44 +1,43 @@
-# CSS
-
 CSS is a language that can be used to add style to an [HTML](/wiki/HTML) page.
-__bold__
-**bold**
 
-*italic*
-_italic_
+Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document written in a markup language such as *HTML*. CSS is a cornerstone technology of the World Wide Web, alongside *HTML* and *JavaScript*.
 
-~~This was mistaken text~~
+The CSS specifications are maintained by the World Wide Web Consortium (W3C). Internet media type (MIME type) `text/css` is registered for use with CSS by **RFC 2318** (March 1998). The W3C operates a free CSS validation service for CSS documents.
 
-***All bold and italic***
+# Syntax
+CSS has a simple syntax and uses a number of English keywords to specify the names of various style properties.
 
-In the words of Abraham Lincoln:
+A style sheet consists of a list of rules. Each rule or rule-set consists of one or more selectors, and a declaration block.
 
-> Pardon my French
+## Selector
+In CSS, selectors declare which part of the markup a style applies to by matching tags and attributes in the markup itself.
 
-Use `git status` to list all new or modified files that haven't yet been committed.
+Selectors may apply to the following:
 
-Some basic Git commands are:
+- all elements of a specific type, e.g. the second-level headers h2
+- elements specified by attribute, in particular:
+   - id: an identifier unique within the document, identified with a hash prefix e.g. #id
+   - class: an identifier that can annotate multiple elements in a document, identified with a period prefix e.g. .classname
+- elements depending on how they are placed relative to others in the document tree.
+
+For example, under pre-CSS HTML, a heading element defined with red text would be written as:
+
 ```
-git status
-git add
-git commit
+<style>
+    h1 {
+        color: red;
+    }
+</style>
 ```
 
-- George Washington
-- John Adams
-- Thomas Jefferson
+### Example
+Given the following style sheet:
 
-1. James Madison
-2. James Monroe
-3. John Quincy Adams
+```
+h1 {
+   color: pink;
+}
+```
 
-
-1. First list item
-   - First nested list item
-     - Second nested list item
-
-- [x] #739
-- [ ] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:
-
-- [ ] \(Optional) Open a followup issue
+Suppose there is an h1 element with an emphasizing element (em) inside.
+If no color is assigned to the em element, the emphasized word "illustrate" inherits the color of the parent element, h1. The style sheet h1 has the color pink, hence, the em element is likewise pink.

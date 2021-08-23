@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block body %}
-    <form action="{% url 'new_page' %}" method="POST">
+    <a href="{% url 'tips'%}">Formatting tips</a>
+    <h1>Create new page</h1>
+    <form action="{% url 'new_page' %}" method="POST" id="new_page">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" name="save" value="Save">
+        <input type="submit" name="save" value="Save" class="save">
     </form>
 
 {% endblock %}

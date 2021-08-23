@@ -65,24 +65,25 @@ def validate_caption(value):
             params={'value': value},
         )
 
-def to_h1(caption):
-    return f"# {caption}\n\n"
+# def to_h1(caption):
+#     return f"# {caption}\n\n"
  
 class NewPageForm(forms.Form):
     caption = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': 'Caption',
-        'required': True}),
-        validators=[validate_caption])
+        'required': True,}),
+        validators=[validate_caption], label="")
     body = forms.CharField(widget=forms.Textarea(attrs={
         'placeholder': 'Body',
-        'required': True}))
+        'required': True}),
+        label="")
 
 def new_page(request):
     if request.method == "POST":
         form = NewPageForm(request.POST)
         if form.is_valid():
             caption = form.cleaned_data["caption"]
-            body = to_h1(caption) + form.cleaned_data["body"]
+            body = form.cleaned_data["body"]
             util.save_entry(caption, body)
             return HttpResponseRedirect(reverse("entry", kwargs={'caption': caption}))
         return render(request, "encyclopedia/new_page.html", {
@@ -95,13 +96,14 @@ def new_page(request):
 class EditPageForm(forms.Form):
     body = forms.CharField(widget=forms.Textarea(attrs={
         'placeholder': 'Body',
-        'required': True}))
+        'required': True}), 
+        label="")
 
 def edit_page(request, caption):
     if request.method == "POST":
         form = EditPageForm(request.POST)
         if form.is_valid():
-            body = to_h1(caption) + form.cleaned_data["body"]
+            body = form.cleaned_data["body"]
             util.save_entry(caption, body)
             return HttpResponseRedirect(reverse('entry', kwargs={"caption": caption}))
         return render(request, "encyclopedia/edit_page.html", {
@@ -110,7 +112,7 @@ def edit_page(request, caption):
     entry = util.get_entry(caption)
     if not entry:
         return render(request, "encyclopedia/not_found.html")
-    entry = entry.split("\n\n",1)[1]
+    # entry = entry.split("\n\n",1)[1]
     data = {
         "body": entry,
     }
@@ -124,3 +126,6 @@ def random(request):
     entries = util.list_entries()
     caption = rand.choice(entries)
     return HttpResponseRedirect(reverse("entry", kwargs={"caption": caption}))
+
+def tips(request):
+    return render(request, "encyclopedia/formatting.html")

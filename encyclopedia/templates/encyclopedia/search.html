@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    <p>Here's what found:</p>
     <ul>
         {% for piece in search_res %}
         <li><a href="{% url 'entry' caption=piece %}">{{ piece }}</a></li>
